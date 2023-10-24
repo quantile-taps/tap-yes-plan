@@ -11,9 +11,13 @@ from singer_sdk.streams import RESTStream
 class YesPlanStream(RESTStream):
     """YesPlan stream class."""
 
-    url_base = "https://theaterhaarlem.yesplan.nl/api"
     records_jsonpath = "$.data[*]"
     next_page_token_jsonpath = "$.pagination.next"
+
+    @property
+    def url_base(self) -> str:
+        """Return the url_base for the requests."""
+        return self.config.get("url_base")
 
     @property
     def authenticator(self) -> APIKeyAuthenticator:
