@@ -34,7 +34,7 @@ class YesPlanStream(RESTStream):
         parsed_url = urlparse(url)
         return parse_qs(parsed_url.query)
 
-    def get_url_params(self, _context: dict, next_page_token: dict) -> dict[str]:
+    def get_url_params(self, _context: dict, next_page_token: dict) -> dict:
         """Return the next page token as url params."""
         return self.extract_params(next_page_token)
 
