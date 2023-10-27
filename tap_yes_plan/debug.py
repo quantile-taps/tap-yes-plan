@@ -6,6 +6,7 @@ if __name__ == "__main__":
     tap = TapYesPlan(
         {
             "api_key": env["YES_PLAN_API_KEY"],
+            "url_base": "https://theater.yesplan.nl/api",
             "start_date": "2022-01-01",
         }
     )
