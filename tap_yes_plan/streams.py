@@ -85,7 +85,7 @@ cost_model = [
         th.Property("amount", th.NumberType),
         th.Property("includesvat", th.BooleanType),
     )),
-    th.Property("price", th.NumberType),
+    th.Property("price", th.StringType),
     th.Property("priceformula", th.ObjectType(
         th.Property("amount", th.NumberType),
         th.Property("includesvat", th.BooleanType),
@@ -264,7 +264,15 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("contract_received", th.StringType),
                 th.Property("contract_attachement", th.StringType),
                 th.Property("contract_remarks", th.StringType),
-                th.Property("contact_programmer", th.StringType),
+                th.Property("contact_programmer", th.ObjectType(
+                    th.Property("id", th.StringType),
+                    th.Property("contact", th.ObjectType(
+                        th.Property("id", th.StringType),
+                        th.Property("name", th.StringType),
+                        th.Property("_type", th.StringType),
+                    )   
+                    )
+                )),
                 th.Property("contact_productionmanager", th.StringType),
                 th.Property("contact_technics", th.StringType),
                 th.Property("contact_remarks_intern", th.StringType),
