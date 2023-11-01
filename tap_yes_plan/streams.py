@@ -537,7 +537,7 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("toneel_balletvloer", th.StringType),
                 th.Property("toneel_afstopping", th.StringType),
                 th.Property("toneel_vleugel", th.ArrayType(
-                    *resource_booking_with_resource
+                    th.ObjectType(*resource_booking_with_resource)
                 )),
                 th.Property("toneel_tijdstipstemmen", th.StringType),
                 th.Property("toneel_opmerkingen", th.StringType),
