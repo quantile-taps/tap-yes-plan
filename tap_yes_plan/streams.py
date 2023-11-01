@@ -137,7 +137,11 @@ resource_costings = [
         "resourcebooking",
         th.ObjectType(*resource_booking),
     ),
-    th.Property("alteration", th.StringType),
+    th.Property("alteration", th.ObjectType(
+        th.Property("price", th.StringType),
+        th.Property("netprice", th.StringType),
+        th.Property("vatinclusive", th.BooleanType),
+    )),
     th.Property("cost", th.NumberType),
     th.Property("netprice", th.NumberType),
     th.Property("margin", th.NumberType),
@@ -176,7 +180,11 @@ resource_costings = [
 ]
 
 costings = [
-    th.Property("alteration", th.StringType),
+    th.Property("alteration", th.ObjectType(
+        th.Property("price", th.StringType),
+        th.Property("netprice", th.StringType),
+        th.Property("vatinclusive", th.BooleanType),
+    )),
     th.Property(
         "resourcecostings",
         th.ArrayType(
@@ -198,7 +206,11 @@ costings = [
     th.Property("netpricebeforediscount", th.NumberType),
     th.Property("pricebeforediscount", th.NumberType),
     th.Property("discountpercentage", th.StringType),
-    th.Property("actualalteration", th.StringType),
+    th.Property("actualalteration", th.ObjectType(
+        th.Property("price", th.StringType),
+        th.Property("netprice", th.StringType),
+        th.Property("vatinclusive", th.BooleanType),
+    )),
     th.Property("actualcost", th.NumberType),
     th.Property("actualnetprice", th.NumberType),
     th.Property("actualmargin", th.NumberType),
