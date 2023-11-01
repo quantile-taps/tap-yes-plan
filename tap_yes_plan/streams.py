@@ -201,7 +201,7 @@ costings = [
     th.Property("actualalteration", th.StringType),
     th.Property("actualcost", th.NumberType),
     th.Property("actualnetprice", th.NumberType),
-    th.Property("actualmargin", th.StringType),
+    th.Property("actualmargin", th.NumberType),
     th.Property("actualvat", th.NumberType),
     th.Property(
         "actualvatperrate",
