@@ -345,7 +345,7 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("promo_program_short", th.StringType),
                 th.Property("production_genre", th.StringType),
                 th.Property("promo_geannuleerd", th.StringType),
-                th.Property("promo_exporteernaarcmswebsite_oud", th.StringType),
+                th.Property("promo_exporteernaarcmswebsite_oud", th.ArrayType(th.StringType)),
                 th.Property("promo_titel", th.StringType),
                 th.Property("promo_ondertitel", th.StringType),
                 th.Property("promo_typevoorstelling", th.StringType),
