@@ -140,7 +140,7 @@ resource_costings = [
     th.Property("alteration", th.StringType),
     th.Property("cost", th.NumberType),
     th.Property("netprice", th.NumberType),
-    th.Property("margin", th.StringType),
+    th.Property("margin", th.NumberType),
     th.Property("vat", th.NumberType),
     th.Property(
         "vatperrate",
@@ -154,10 +154,14 @@ resource_costings = [
     th.Property("discountpercentage", th.StringType),
     th.Property("costmodel", th.ObjectType(*cost_model)),
     th.Property("invoice", th.BooleanType),
-    th.Property("actualalteration", th.StringType),
+    th.Property("actualalteration", th.ObjectType(
+        th.Property("price", th.StringType),
+        th.Property("netprice", th.StringType),
+        th.Property("vatinclusive", th.BooleanType),
+    )),
     th.Property("actualcost", th.NumberType),
     th.Property("actualnetprice", th.NumberType),
-    th.Property("actualmargin", th.StringType),
+    th.Property("actualmargin", th.NumberType),
     th.Property("actualvat", th.NumberType),
     th.Property(
         "actualvatperrate",
@@ -182,7 +186,7 @@ costings = [
     th.Property("group", th.StringType),
     th.Property("cost", th.NumberType),
     th.Property("netprice", th.NumberType),
-    th.Property("margin", th.StringType),
+    th.Property("margin", th.NumberType),
     th.Property("vat", th.NumberType),
     th.Property(
         "vatperrate",
