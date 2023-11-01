@@ -59,16 +59,23 @@ event = [
 ]
 
 resource = [
-    th.Property("url", th.StringType),
-    th.Property("id", th.StringType),
-    th.Property("name", th.StringType),
     th.Property("_type", th.StringType),
+    th.Property("id", th.StringType),
+    th.Property("resourcetype", th.StringType),
+    th.Property("name", th.StringType),
+    th.Property("group", th.StringType),
+    th.Property("url", th.StringType),
 ]
 
 resource_booking = [
     th.Property("url", th.StringType),
     th.Property("id", th.StringType),
     th.Property("_type", th.StringType),
+]
+
+resource_booking_with_resource = [
+    *resource_booking,
+    th.Property("resource", th.ObjectType(*resource))
 ]
 
 vat_per_rate = [
@@ -529,7 +536,9 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("toneel_kameelmeester", th.StringType),
                 th.Property("toneel_balletvloer", th.StringType),
                 th.Property("toneel_afstopping", th.StringType),
-                th.Property("toneel_vleugel", th.StringType),
+                th.Property("toneel_vleugel", th.ArrayType(
+                    *resource_booking_with_resource
+                )),
                 th.Property("toneel_tijdstipstemmen", th.StringType),
                 th.Property("toneel_opmerkingen", th.StringType),
                 th.Property("transport_forth", th.StringType),
