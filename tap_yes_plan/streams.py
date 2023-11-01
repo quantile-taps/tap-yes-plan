@@ -454,7 +454,7 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("deal_suppletietotbovengrens", th.NumberType),
                 th.Property("financial_discount", th.StringType),
                 th.Property("sales_verwachtbezetingspercentage", th.NumberType),
-                th.Property("financial_buma_stemra_sabam", th.StringType),
+                th.Property("financial_buma_stemra_sabam", th.NumberType),
                 th.Property("deal_datelastupdate", th.DateType),
                 th.Property("deal_remarks", th.StringType),
                 th.Property("visitors_expectation", th.NumberType),
