@@ -227,6 +227,15 @@ costings = [
     th.Property("actualdiscountpercentage", th.StringType),
 ]
 
+contact = [
+        th.Property("id", th.StringType),
+        th.Property("contact", th.ObjectType(
+            th.Property("id", th.StringType),
+            th.Property("name", th.StringType),
+            th.Property("_type", th.StringType),
+        ))
+]
+
 
 class EventsStream(YesPlanStream):
     """Stream that fetches all the different events."""
@@ -277,42 +286,18 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("production_general_remarks", th.StringType),
                 th.Property("contract_contractadres", th.StringType),
                 th.Property("contract_maker", th.StringType),
-                th.Property("contract_maker_contact", th.StringType),
+                th.Property("contract_maker_contact", th.ObjectType(*contact)),
                 th.Property("contract_sent", th.StringType),
                 th.Property("contract_signed", th.StringType),
                 th.Property("contract_received", th.StringType),
                 th.Property("contract_attachement", th.StringType),
                 th.Property("contract_remarks", th.StringType),
-                th.Property("contact_programmer", th.ObjectType(
-                    th.Property("id", th.StringType),
-                    th.Property("contact", th.ObjectType(
-                        th.Property("id", th.StringType),
-                        th.Property("name", th.StringType),
-                        th.Property("_type", th.StringType),
-                    )   
-                    )
-                )),
+                th.Property("contact_programmer", th.ObjectType(*contact)),
                 th.Property("contact_productionmanager", th.StringType),
                 th.Property("contact_technics", th.StringType),
                 th.Property("contact_remarks_intern", th.StringType),
-                th.Property("contact_impressario", th.ObjectType(
-                    th.Property("id", th.StringType),
-                    th.Property("contact", th.ObjectType(
-                        th.Property("id", th.StringType),
-                        th.Property("name", th.StringType),
-                        th.Property("_type", th.StringType),
-                    )   
-                    )
-                )),
-                th.Property("contact_impressario_contact", th.ObjectType(
-                    th.Property("id", th.StringType),
-                    th.Property("contact", th.ObjectType(
-                        th.Property("id", th.StringType),
-                        th.Property("name", th.StringType),
-                        th.Property("_type", th.StringType),
-                    )   
-                    )
-                )),
+                th.Property("contact_impressario", th.ObjectType(*contact)),
+                th.Property("contact_impressario_contact", th.ObjectType(*contact)),
                 th.Property("contact_client", th.StringType),
                 th.Property("contact_client_contact", th.StringType),
                 th.Property("production_samenwerking_met", th.StringType),
