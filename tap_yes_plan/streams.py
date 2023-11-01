@@ -447,7 +447,7 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("deal_auteursrechten", th.NumberType),
                 th.Property("deal_auteursrechten_uitzonderlijk", th.NumberType),
                 th.Property("financial_remittance", th.StringType),
-                th.Property("deal_pki", th.StringType),
+                th.Property("deal_pki", th.NumberType),
                 th.Property("deal_overigekostenimpresariaat", th.StringType),
                 th.Property("deal_notitiesoverigekostenimpresariaat", th.StringType),
                 th.Property("deal_maxverliesbijdrage", th.NumberType),
