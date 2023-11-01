@@ -7,9 +7,9 @@ from singer_sdk import typing as th
 from tap_yes_plan import streams
 
 STREAM_TYPES = [
-    # streams.EventsStream,
+    streams.EventsStream,
     streams.EventsCustomStream,
-    # streams.EventsCostingsStream,
+    streams.EventsCostingsStream,
 ]
 
 
