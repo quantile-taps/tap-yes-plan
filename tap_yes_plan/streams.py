@@ -329,7 +329,6 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("contact_technics_external", th.StringType),
                 th.Property("contact_roadie", th.ObjectType(*contact)),
                 th.Property("contact_remarks_external", th.StringType),
-                th.Property("contract_bordereladres", th.StringType),
                 th.Property("contract_factuuradres", th.StringType),
                 th.Property("contract_borderelverstuurd", th.ObjectType(*attachment)),
                 th.Property("contract_datumborderel", th.StringType),
