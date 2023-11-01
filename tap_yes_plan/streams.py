@@ -297,7 +297,12 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("production_surtitles", th.ArrayType(th.StringType)),
                 th.Property("production_framework", th.StringType),
                 th.Property("production_general_remarks", th.StringType),
-                th.Property("contract_contractadres", th.StringType),
+                th.Property("contract_contractadres", th.ObjectType(
+                    th.Property("_type", th.StringType),
+                    th.Property("id", th.StringType),
+                    th.Property("url", th.StringType),
+                    th.Property("contact", th.ObjectType(*contact))
+                )),
                 th.Property("contract_maker", th.StringType),
                 th.Property("contract_maker_contact", th.ObjectType(*contact)),
                 th.Property("contract_sent", th.StringType),
