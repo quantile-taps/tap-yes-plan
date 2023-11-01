@@ -122,7 +122,10 @@ cost_model = [
                 ),
     th.Property("purchaseprice", th.NumberType),
     th.Property("vat", th.NumberType),
-    th.Property("profiles", th.ArrayType(th.StringType)),
+    th.Property("profiles", th.ArrayType(th.ObjectType(
+        th.Property("id", th.StringType),
+        th.Property("name", th.StringType),
+    ))),
 ]
 
 resource_costings = [
