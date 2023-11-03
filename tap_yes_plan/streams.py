@@ -266,17 +266,15 @@ class EventsCustomStream(YesPlanStream):
 
     name = "events_custom_data"
     path = "/events/date:01-01-1970 TO 31-12-2999/customdata?valuesonly"
-    primary_keys = ["event__id"]
+    primary_keys = ["event_id"]
     replication_key = None
 
+    def post_process(self, row: dict, context: dict) -> dict:
+        row["event_id"] = row["event"]["id"]
+        return row
+
     schema = th.PropertiesList(
-        th.Property(
-            "event",
-            th.ObjectType(
-                th.Property("id", th.StringType),
-                th.Property("name", th.StringType),
-            ),
-        ),
+        th.Property("event_id", th.StringType),
         th.Property(
             "items",
             th.ObjectType(
@@ -626,18 +624,15 @@ class EventsCostingsStream(YesPlanStream):
 
     name = "events_costings"
     path = "/events/date:01-01-1970 TO 31-12-2999/costings"
-    primary_keys = ["event__id"]
+    primary_keys = ["event_id"]
     replication_key = None
 
+    def post_process(self, row: dict, context: dict) -> dict:
+        row["event_id"] = row["event"]["id"]
+        return row
+
     schema = th.PropertiesList(
-        th.Property(
-            "event",
-            th.ObjectType(
-                th.Property("url", th.StringType),
-                th.Property("id", th.StringType),
-                th.Property("name", th.StringType),
-            ),
-        ),
+        th.Property("event_id", th.StringType),
         th.Property(
             "costings",
             th.ArrayType(
