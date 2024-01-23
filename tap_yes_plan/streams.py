@@ -609,7 +609,7 @@ class EventsCustomStream(YesPlanStream):
                 th.Property("appconnex_debtor", th.StringType),
                 th.Property("afasproject_referentie", th.StringType),
                 th.Property("production_title1", th.StringType),
-                th.Property("contacts_internal_booker", th.StringType),
+                th.Property("contacts_internal_booker", th.ObjectType(*contact)),
                 th.Property("contacts_external_organizer_organization", th.StringType),
                 th.Property("contacts_external_organizer_person", th.StringType),
                 th.Property("quote_letter_personalized_note", th.StringType),
