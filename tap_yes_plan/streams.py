@@ -34,12 +34,9 @@ status = [
 
 location = [
     th.Property("id", th.StringType),
-    th.Property("type", th.StringType),
-    th.Property("group", th.StringType),
-    th.Property("description", th.StringType),
-    th.Property("external", th.BooleanType),
-    th.Property("rented", th.BooleanType),
-    th.Property("amount", th.StringType),
+    th.Property("_type", th.StringType),
+    th.Property("url", th.StringType),
+    th.Property("name", th.StringType),
 ]
 
 event = [
