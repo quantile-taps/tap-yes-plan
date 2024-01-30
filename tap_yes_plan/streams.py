@@ -255,7 +255,9 @@ class EventsStream(YesPlanStream):
     primary_keys = ["id"]
     replication_key = None
 
-    schema = th.PropertiesList(*event).to_dict()
+    schema = th.PropertiesList(
+        th.Property("id", th.StringType),
+    ).to_dict()
 
 
 class EventsCustomStream(YesPlanStream):
