@@ -251,7 +251,7 @@ class EventsStream(YesPlanStream):
     """Stream that fetches all the different events."""
 
     name = "events"
-    path = "/events"
+    path = "/events/date:01-01-2024 TO 02-01-2024/"
     primary_keys = ["id"]
     replication_key = None
 
