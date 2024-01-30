@@ -272,6 +272,12 @@ class EventsCustomStream(YesPlanStream):
 
     schema = th.PropertiesList(
         th.Property("event_id", th.StringType),
+        th.Property(
+            "items",
+            th.ObjectType(
+                th.Property("production_title", th.StringType),
+            ),
+        ),
     ).to_dict()
 
 
