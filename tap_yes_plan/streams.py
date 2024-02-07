@@ -267,7 +267,7 @@ class EventsStream(YesPlanStream):
         """"""
         stream = self._tap.catalog.get_stream(self.name)
         
-        if not stream.schema:
+        if not stream:
             return self.default_schema
         
         return {
