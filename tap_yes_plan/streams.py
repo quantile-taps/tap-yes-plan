@@ -257,6 +257,7 @@ class EventsStream(YesPlanStream):
 
     schema = th.PropertiesList(
         th.Property("id", th.StringType),
+        th.Property("name", th.StringType),
     ).to_dict()
 
 
