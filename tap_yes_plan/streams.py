@@ -266,8 +266,10 @@ class EventsStream(YesPlanStream):
     def schema(self) -> dict:
         """"""
         stream = self._tap.catalog.get_stream(self.name)
+        if not stream.schema:
+            return self.default_schema
 
-        return {**self.default_schema, **{key: schema.to_dict() for key, schema in stream.schema.properties.items()}}
+        return {key: schema.to_dict() for key, schema in stream.schema.properties.items()}
 
 class EventsCustomStream(YesPlanStream):
     """This stream fetches all custom data related to events."""
