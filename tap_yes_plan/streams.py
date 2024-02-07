@@ -1,5 +1,5 @@
 """Stream type classes for tap-yes-plan."""
-
+from singer_sdk.helpers._typing import TypeConformanceLevel
 from singer_sdk import typing as th
 from tap_yes_plan.client import YesPlanStream
 
@@ -254,6 +254,8 @@ class EventsStream(YesPlanStream):
     path = "/events/date:01-01-2024 TO 02-01-2024/"
     primary_keys = ["id"]
     replication_key = None
+
+    TYPE_CONFORMANCE_LEVEL = TypeConformanceLevel.NONE
 
     schema = th.PropertiesList(
         th.Property("id", th.StringType),
