@@ -255,13 +255,19 @@ class EventsStream(YesPlanStream):
     primary_keys = ["id"]
     replication_key = None
 
-    TYPE_CONFORMANCE_LEVEL = TypeConformanceLevel.NONE
+    # TYPE_CONFORMANCE_LEVEL = TypeConformanceLevel.NONE
 
-    schema = th.PropertiesList(
+    default_schema = th.PropertiesList(
         th.Property("id", th.StringType),
         th.Property("name", th.StringType),
     ).to_dict()
 
+    @property
+    def schema(self) -> dict:
+        """"""
+        stream = self._tap.catalog.get_stream(self.name)
+
+        return {**self.default_schema, **{key: schema.to_dict() for key, schema in stream.schema.properties.items()}}
 
 class EventsCustomStream(YesPlanStream):
     """This stream fetches all custom data related to events."""
