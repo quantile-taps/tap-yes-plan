@@ -256,20 +256,18 @@ class EventsStream(YesPlanStream):
     """Stream that fetches all the different events."""
 
     name = "events"
-    path = "/events/date:01-01-2024 TO 01-03-2024/"
+    path = "/events/date:01-01-1970 TO 31-12-2999/"
     primary_keys = ["id"]
     replication_key = None
 
-    default_schema = th.PropertiesList(
-        th.Property("id", th.StringType),
-    ).to_dict()
+    default_schema = th.PropertiesList(*event).to_dict()
 
 
 class EventsCustomStream(YesPlanStream):
     """This stream fetches all custom data related to events."""
 
     name = "events_custom_data"
-    path = "/events/date:01-01-2024 TO 01-03-2024/customdata?valuesonly"
+    path = "/events/date:01-01-1970 TO 31-12-2999/customdata?valuesonly"
     primary_keys = ["event_id"]
     replication_key = None
 
