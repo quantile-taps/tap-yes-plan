@@ -1,5 +1,5 @@
 """Stream type classes for tap-yes-plan."""
-from singer_sdk.helpers._typing import TypeConformanceLevel
+
 from singer_sdk import typing as th
 from tap_yes_plan.client import YesPlanStream
 
@@ -41,18 +41,23 @@ location = [
 
 event = [
     th.Property("id", th.StringType),
+    th.Property("name", th.StringType),
+    th.Property("group", th.ObjectType(*group)),
+    th.Property("defaultscheduledescription", th.StringType),
+    th.Property("defaultschedulestarttime", th.StringType),
+    th.Property("defaultscheduleendtime", th.StringType),
+    th.Property("defaultschedulestart", th.StringType),
+    th.Property("defaultscheduleend", th.StringType),
+    th.Property("status", th.ObjectType(*status)),
+    th.Property("profile", th.ObjectType(*profile)),
+    th.Property("locations", th.ArrayType(th.ObjectType(*location))),
+    th.Property("starttime", th.DateTimeType),
+    th.Property("endtime", th.DateTimeType),
+    th.Property("isproduction", th.BooleanType),
     th.Property("owner", th.ObjectType(*user)),
     th.Property("owningteam", th.ObjectType(*user_group)),
     th.Property("owninggroup", th.ObjectType(*user_group)),
-    th.Property("name", th.StringType),
-    th.Property("group", th.ObjectType(*group)),
     th.Property("parentgroup", th.ObjectType(*group)),
-    th.Property("starttime", th.DateTimeType),
-    th.Property("endtime", th.DateTimeType),
-    th.Property("profile", th.ObjectType(*profile)),
-    th.Property("status", th.ObjectType(*status)),
-    th.Property("locations", th.ArrayType(th.ObjectType(*location))),
-    th.Property("isproduction", th.BooleanType),
 ]
 
 resource = [
@@ -255,11 +260,7 @@ class EventsStream(YesPlanStream):
     primary_keys = ["id"]
     replication_key = None
 
-    default_schema = th.PropertiesList(
-        th.Property("id", th.StringType),
-        th.Property("name", th.StringType),
-    ).to_dict()
-
+    default_schema = th.PropertiesList(*event).to_dict()
 
 
 class EventsCustomStream(YesPlanStream):
@@ -276,10 +277,6 @@ class EventsCustomStream(YesPlanStream):
 
     default_schema = th.PropertiesList(
         th.Property("event_id", th.StringType),
-        th.Property("items", th.ObjectType(
-            th.Property("name", th.StringType),
-            th.Property("value", th.StringType),
-        )),
     ).to_dict()
 
 
