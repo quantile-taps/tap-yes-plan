@@ -267,7 +267,7 @@ class EventsCustomStream(YesPlanStream):
     """This stream fetches all custom data related to events."""
 
     name = "events_custom_data"
-    path = "/events/date:01-01-1970 TO 31-12-2999/customdata?valuesonly"
+    path = "/events/date:01-01-2024 TO 31-12-2024/customdata?valuesonly"
     primary_keys = ["event_id"]
     replication_key = None
 
@@ -284,7 +284,7 @@ class EventsCostingsStream(YesPlanStream):
     """This stream fetches all custom data related to events."""
 
     name = "events_costings"
-    path = "/events/date:01-01-1970 TO 31-12-2999/costings"
+    path = "/events/date:01-01-2024 TO 31-12-2024/costings"
     primary_keys = ["event_id"]
     replication_key = None
 
