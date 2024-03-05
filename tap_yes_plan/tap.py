@@ -8,8 +8,8 @@ from tap_yes_plan import streams
 
 STREAM_TYPES = [
     streams.EventsStream,
-    # streams.EventsCustomStream,
-    # streams.EventsCostingsStream,
+    streams.EventsCustomStream,
+    streams.EventsCostingsStream,
 ]
 
 
