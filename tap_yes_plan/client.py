@@ -75,6 +75,23 @@ class YesPlanStream(RESTStream):
             value=self.config.get("api_key"),
             location="params",
         )
+    
+    @property
+    def schema(self) -> dict:
+        """
+        Returns the schema for the stream based on the catalog definition.
+        """
+        stream = self._tap.catalog.get_stream(self.name)
+
+        if not stream:
+            return self.default_schema
+
+        return {
+            "type": "object",
+            "properties": {
+                key: schema.to_dict() for key, schema in stream.schema.properties.items()
+            },
+        }
 
     def extract_params(self, url) -> dict:
         """Extract all params from an url."""
