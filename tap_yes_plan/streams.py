@@ -1,5 +1,5 @@
 """Stream type classes for tap-yes-plan."""
-
+import pendulum
 from singer_sdk import typing as th
 from tap_yes_plan.client import YesPlanStream
 
@@ -256,9 +256,14 @@ class EventsStream(YesPlanStream):
     """Stream that fetches all the different events."""
 
     name = "events"
-    path = "/events/date:01-01-1970 TO 31-12-2999/"
     primary_keys = ["id"]
     replication_key = None
+
+    @property
+    def path(self):
+        """Return the path for the requests."""
+        start_date = pendulum.parse(self.config.get("start_date")).format("DD-MM-YYYY")
+        return f"/events/date:{start_date} TO 31-12-2999/"
 
     default_schema = th.PropertiesList(*event).to_dict()
 
@@ -267,9 +272,14 @@ class EventsCustomStream(YesPlanStream):
     """This stream fetches all custom data related to events."""
 
     name = "events_custom_data"
-    path = "/events/date:01-01-1970 TO 31-12-2999/customdata?valuesonly"
     primary_keys = ["event_id"]
     replication_key = None
+
+    @property
+    def path(self):
+        """Return the path for the requests."""
+        start_date = pendulum.parse(self.config.get("start_date")).format("DD-MM-YYYY")
+        return f"/events/date:{start_date} TO 31-12-2999/customdata?valuesonly"
 
     def post_process(self, row: dict, context: dict) -> dict:
         row["event_id"] = row["event"]["id"]
@@ -284,9 +294,14 @@ class EventsCostingsStream(YesPlanStream):
     """This stream fetches all custom data related to events."""
 
     name = "events_costings"
-    path = "/events/date:01-01-2024 TO 31-12-2024/costings"
     primary_keys = ["event_id"]
     replication_key = None
+
+    @property
+    def path(self):
+        """Return the path for the requests."""
+        start_date = pendulum.parse(self.config.get("start_date")).format("DD-MM-YYYY")
+        return f"/events/date:{start_date} TO 31-12-2999/costings"
 
     def post_process(self, row: dict, context: dict) -> dict:
         row["event_id"] = row["event"]["id"]
